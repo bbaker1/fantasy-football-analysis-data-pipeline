@@ -9,7 +9,7 @@ Airflow DAG Steps
 3. For each file, upload to GCS using path for today's date (e.g. bucket/table/yyyy/mm/dd/data.csv)
 4. Load each file from GCS into raw BigQuery table
 5. Update the current week for next week's run
-6. (Not in the DAG anymore because my dbt free-trial expired) Run dbt job to build data model
+6. (Not in the DAG anymore because my dbt free-trial expired) Run dbt job to build data model and update Analytics tables
 
 Tables
 ================
