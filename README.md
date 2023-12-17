@@ -28,6 +28,7 @@ Tools
 - Python
 - Airflow
 - Docker (Astronomer)
+- GCS
 - BigQuery
 - dbt
 - SQL
