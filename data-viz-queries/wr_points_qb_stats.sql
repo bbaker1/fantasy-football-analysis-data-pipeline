@@ -1,44 +1,5 @@
 create or replace view Analytics.wr_points_qb_stats as (
-  with record_by_week as (
-    select
-      id as team_id,
-      name as team_name,
-      week,
-      year,
-      sum(case when id = winner_team_id then 1 else 0 end) 
-        over (
-          partition by name, year
-          order by week
-          rows between unbounded preceding and 1 preceding
-        ) as num_wins,
-      sum(case when id = loser_team_id then 1 else 0 end)
-        over (
-          partition by name, year
-          order by week
-          rows between unbounded preceding and 1 preceding
-        ) as num_losses
-    from Analytics.dim_teams teams
-    inner join Analytics.fct_scores scores
-    on teams.id = scores.winner_team_id or teams.id = scores.loser_team_id
-    group by name, winner_team_id, loser_team_id, id, week, year
-  ),
-
-  team_win_pct as (
-    select
-      team_id,
-      team_name,
-      week,
-      year,
-      num_wins,
-      num_losses,
-      case when num_wins = 0 then 0
-          when num_losses = 0 then 1
-          else num_wins / (num_wins + num_losses)
-          end as win_pct
-    from record_by_week
-  ),
-
-  qb_rolling_stats as (
+  with qb_rolling_stats as (
     select
       team_id,
       player,
