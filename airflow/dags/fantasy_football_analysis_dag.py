@@ -11,7 +11,7 @@ from scripts.get_data.get_scores_delta import get_scores_data
 from scripts.get_data.get_schedules import get_schedule_data
 
 dt = datetime.now()
-year = dt.year-3
+year = dt.year
 # /usr/local/airflow/dags/...
 
 with DAG(
