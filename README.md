@@ -21,7 +21,7 @@ Tables
 - fct_scores
 - fct_schedules
 - dim_teams
-- dim_date
+- dim_weeks
 
 Tools
 ================
